@@ -1,0 +1,251 @@
+<script setup>
+import TypeWriter from '../components/TypeWriter.vue'
+import { roles } from '../data'
+</script>
+
+<template>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Hello, I'm</p>
+
+        <h1 class="hero-title">
+          <span class="name-line1">Krishendree</span>
+          <span class="name-line2">Kistensamy</span>
+        </h1>
+
+        <TypeWriter :words="roles" />
+
+        <div class="hero-cta">
+          <RouterLink class="btn btn-primary" to="/projects">See my work</RouterLink>
+          <RouterLink class="btn btn-secondary" to="/contact">Let's talk</RouterLink>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <div class="chip bounce-float c1">&lt;creative /&gt;</div>
+        <div class="chip bounce-float c2">display: flex;</div>
+        <div class="chip bounce-float c3">const me = "unique";</div>
+
+        <img
+          class="bounce-float"
+          src="https://i.ibb.co/CKqGMVhr/cartoon.png"
+          alt="Illustrated portrait of Krishendree Kistensamy"
+        >
+      </div>
+    </section>
+  </main>
+</template>
+
+<style scoped>
+/* --- Hero layout --- */
+.hero {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+  padding: 40px 5% 60px 5%;
+}
+
+.hero-copy {
+  flex: 1 1 420px;
+  text-align: left;
+  max-width: 600px;
+}
+
+/* --- Eyebrow --- */
+.eyebrow {
+  color: var(--color-eyebrow);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* --- Name title --- */
+.hero-title {
+  font-family: var(--font-serif, 'Fraunces', Georgia, serif);
+  line-height: 1.02;
+  margin-bottom: 20px;
+}
+
+.name-line1 {
+  display: block;
+  font-size: clamp(2.8rem, 6.5vw, 5rem);
+  font-weight: 800;
+  color: var(--color-dark);
+  letter-spacing: -0.02em;
+}
+
+.name-line2 {
+  display: inline-block;
+  font-size: clamp(2.8rem, 6.5vw, 5rem);
+  font-weight: 700;
+  font-style: italic;
+  background: linear-gradient(90deg, #e42074 0%, #eb6b27 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  letter-spacing: -0.01em;
+}
+
+/* --- Typewriter: override to left-align and match text size --- */
+:deep(.hero-subtitle) {
+  justify-content: flex-start !important;
+  text-align: left !important;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem) !important;
+  color: var(--color-subtext) !important;
+  min-height: 2.2em !important;
+  margin-bottom: 8px !important;
+  padding-left: 0 !important;
+}
+
+:deep(.role-highlight) {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+:deep(.typing-cursor) {
+  font-size: 1em;
+}
+
+/* --- CTA buttons --- */
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 32px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              background 0.25s ease;
+  border: none;
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #e42074 0%, #ee6b22 100%);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(228, 32, 116, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(228, 32, 116, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(34, 22, 56, 0.15);
+  color: var(--color-dark);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-4px) scale(1.03);
+  background: #ffffff;
+  border-color: var(--color-dark);
+  box-shadow: 0 10px 24px rgba(34, 22, 56, 0.1);
+}
+
+[data-theme="dark"] .btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-dark);
+}
+
+/* --- Hero image --- */
+.hero-image {
+  position: relative;
+  flex: 1 1 320px;
+  max-width: 420px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 28px;
+  filter: drop-shadow(0 25px 45px rgba(34, 22, 56, 0.25));
+}
+
+/* --- Floating chips --- */
+.chip {
+  position: absolute;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(34, 22, 56, 0.1);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(34, 22, 56, 0.08);
+  z-index: 2;
+}
+
+[data-theme="dark"] .chip {
+  background: rgba(20, 20, 20, 0.85);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-dark);
+}
+
+.c1 { top: 0; left: -6%; color: #2E9D84; }
+.c2 { top: 45%; right: -10%; color: #e42074; }
+.c3 { bottom: 4%; left: -4%; color: #eb6b27; }
+
+@keyframes bounceIdle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+.bounce-float {
+  animation: bounceIdle 4s ease-in-out infinite;
+}
+
+.chip.c1 { animation-delay: 0s; }
+.chip.c2 { animation-delay: 0.8s; }
+.chip.c3 { animation-delay: 1.6s; }
+
+/* --- Mobile --- */
+@media (max-width: 700px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 5% 40px 5%;
+    gap: 32px;
+  }
+
+  .hero-copy { text-align: center; }
+
+  /* Center the typewriter on mobile */
+  :deep(.hero-subtitle) {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .hero-cta { justify-content: center; }
+  .chip { display: none; }
+  .hero-image img { max-width: 280px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bounce-float { animation: none; }
+}
+</style>
